@@ -35,7 +35,12 @@ migrate -path db/migration -database "postgres://root:secret@localhost:5432/simp
 ```bash
 ## using sqlc
 
+## db/sql vs GORM vs sqlx vs sqlc
 
+# to generate sqlc.yaml
+sqlc init
+
+# write CRUD sql queries inside db/query
 ```
 
 ## Makefile specs
@@ -44,6 +49,7 @@ migrate -path db/migration -database "postgres://root:secret@localhost:5432/simp
 - **dropdb** - remove servie db
 - **migartionup** - migrate db to new migrations
 - **migartiondown** - rollback db to previous stage
+- **sqlc** - generate golang db functions from sql queries
 
 ## References
 [dbSchemaHelper](https://dbdiagram.io) <br>
