@@ -51,6 +51,9 @@ go get github.com/lib/pq
 
 ## for writing single liners assertions and prevent if-else logic, install
 go get github.com/stretchr/testify
+
+# run test coverage
+go test -v -cover ./...
 ```
 
 ## Makefile specs
