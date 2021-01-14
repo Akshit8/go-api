@@ -60,6 +60,7 @@ go get github.com/stretchr/testify
 - **migartionup** - migrate db to new migrations
 - **migartiondown** - rollback db to previous stage
 - **sqlc** - generate golang db functions from sql queries
+- **test** - run tests in all packages and prints verbose with line coverage
 
 ## References
 [dbSchemaHelper](https://dbdiagram.io) <br>

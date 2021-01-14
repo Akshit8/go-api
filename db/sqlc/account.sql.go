@@ -23,9 +23,9 @@ type CreateAccountParams struct {
 	Currency string `json:"currency"`
 }
 
-func (q *Queries) CreateAccount(ctx context.Context, arg CreateAccountParams) (Accounts, error) {
+func (q *Queries) CreateAccount(ctx context.Context, arg CreateAccountParams) (Account, error) {
 	row := q.queryRow(ctx, q.createAccountStmt, createAccount, arg.Owner, arg.Balance, arg.Currency)
-	var i Accounts
+	var i Account
 	err := row.Scan(
 		&i.ID,
 		&i.Owner,
@@ -50,9 +50,9 @@ SELECT id, owner, balance, currency, created_at FROM accounts
 WHERE id = $1 LIMIT 1
 `
 
-func (q *Queries) GetAccount(ctx context.Context, id int64) (Accounts, error) {
+func (q *Queries) GetAccount(ctx context.Context, id int64) (Account, error) {
 	row := q.queryRow(ctx, q.getAccountStmt, getAccount, id)
-	var i Accounts
+	var i Account
 	err := row.Scan(
 		&i.ID,
 		&i.Owner,
@@ -75,15 +75,15 @@ type ListAccountsParams struct {
 	Offset int32 `json:"offset"`
 }
 
-func (q *Queries) ListAccounts(ctx context.Context, arg ListAccountsParams) ([]Accounts, error) {
+func (q *Queries) ListAccounts(ctx context.Context, arg ListAccountsParams) ([]Account, error) {
 	rows, err := q.query(ctx, q.listAccountsStmt, listAccounts, arg.Limit, arg.Offset)
 	if err != nil {
 		return nil, err
 	}
 	defer rows.Close()
-	var items []Accounts
+	var items []Account
 	for rows.Next() {
-		var i Accounts
+		var i Account
 		if err := rows.Scan(
 			&i.ID,
 			&i.Owner,
@@ -116,9 +116,9 @@ type UpdateAccountParams struct {
 	Balance int64 `json:"balance"`
 }
 
-func (q *Queries) UpdateAccount(ctx context.Context, arg UpdateAccountParams) (Accounts, error) {
+func (q *Queries) UpdateAccount(ctx context.Context, arg UpdateAccountParams) (Account, error) {
 	row := q.queryRow(ctx, q.updateAccountStmt, updateAccount, arg.ID, arg.Balance)
-	var i Accounts
+	var i Account
 	err := row.Scan(
 		&i.ID,
 		&i.Owner,

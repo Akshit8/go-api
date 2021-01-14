@@ -12,13 +12,18 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/require"
+	"github.com/Akshit8/go-api/util"
 )
+
+func createRandomAccount(t *testing.T) Account {
+
+}
 
 func TestCreatingAccount(t *testing.T) {
 	arg := CreateAccountParams{
-		Owner: "Akshit",
-		Balance: 200,
-		Currency: "INR",
+		Owner: util.RandomOwner(),
+		Balance: util.RandomMoney(),
+		Currency: util.RandomCurrency(),
 	}
 
 	account, err := testQueries.CreateAccount(context.Background(), arg)
@@ -32,4 +37,8 @@ func TestCreatingAccount(t *testing.T) {
 
 	require.NotZero(t, account.ID)
 	require.NotZero(t, account.CreatedAt)
+}
+
+func TestGetAccount(t *testing.T) {
+
 }
