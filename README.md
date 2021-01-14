@@ -43,6 +43,16 @@ sqlc init
 # write CRUD sql queries inside db/query
 ```
 
+## GOlang unit tests for Database CRUD
+```bash
+## the db/sql is just query client and doesn't features any driver
+## so for this we need to install postgres driver for go
+go get github.com/lib/pq
+
+## for writing single liners assertions and prevent if-else logic, install
+go get github.com/stretchr/testify
+```
+
 ## Makefile specs
 - **postgres** - setup postgress with compose
 - **createdb** - create a service db inside postgres
@@ -55,6 +65,9 @@ sqlc init
 [dbSchemaHelper](https://dbdiagram.io) <br>
 [migration-tool](https://github.com/golang-migrate/migrate)<br>
 [crud-code-generator](https://github.com/kyleconroy/sqlc)<br>
+[go-postgres-driver](https://github.com/lib/pq)<br>
+[common-assertion-toolkit](https://github.com/stretchr/testify)<br>
+[accessing-host-network-inside-deocker-container](https://stackoverflow.com/questions/24319662/from-inside-of-a-docker-container-how-do-i-connect-to-the-localhost-of-the-mach#:~:text=Use%20%2D%2Dnetwork%3D%22host%22,for%20Linux%2C%20per%20the%20documentation.)<br>
 
 ## Author
 **Akshit Sadana <akshitsadana@gmail.com>**
