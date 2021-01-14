@@ -3,9 +3,6 @@
 ## DB Architecture
 <img src=".github/assets/BankServiceSchema.png">
 
-## References
-[dbSchemaHelper](https://dbdiagram.io)
-
 ## Setting PostgresDB for development with docker
 ```bash
 # make sure to run in root folder
@@ -16,6 +13,9 @@ docker exec -it postgresdb psql -U root
 
 # run all the scripts inside BankService.sql to initialize db
 ```
+
+## References
+[dbSchemaHelper](https://dbdiagram.io)
 
 ## Author
 **Akshit Sadana <akshitsadana@gmail.com>**
