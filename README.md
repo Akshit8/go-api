@@ -1,5 +1,10 @@
-# go-boilerplate
+# go-api
 
+## DB Architecture
+<img src=".github/assets/BankServiceSchema.png">
+
+## References
+[dbSchemaHelper](https://dbdiagram.io)
 
 ## Author
 **Akshit Sadana <akshitsadana@gmail.com>**
