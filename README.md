@@ -10,12 +10,36 @@ docker-compose up -d
 
 # getting a postgres shell inside postgres container with root user
 docker exec -it postgresdb psql -U root
-
-# run all the scripts inside BankService.sql to initialize db
 ```
 
+## Set databse migration
+```bash
+## install migrate cli tool
+brew install migrate
+
+## create migration folder
+db/migration
+
+# genertate init migration
+migrate create -ext sql -dir db/migration -seq init_schema
+
+# set bank service db
+docker exec -it postgresdb createdb --username=root --owner=root simple_bank
+
+# migrate up
+migrate -path db/migration -database "postgres://root:secret@localhost:5432/simple_bank?sslmode=disable" -verbose up
+```
+
+## Makefile specs
+- **postgres** - setup postgress with compose
+- **createdb** - create a service db inside postgres
+- **dropdb** - remove servie db
+- **migartionup** - migrate db to new migrations
+- **migartiondown** - rollback db to previous stage
+
 ## References
-[dbSchemaHelper](https://dbdiagram.io)
+[dbSchemaHelper](https://dbdiagram.io) <br>
+[migration-tool](https://github.com/golang-migrate/migrate)<br>
 
 ## Author
 **Akshit Sadana <akshitsadana@gmail.com>**
