@@ -6,6 +6,17 @@
 ## References
 [dbSchemaHelper](https://dbdiagram.io)
 
+## Setting PostgresDB for development with docker
+```bash
+# make sure to run in root folder
+docker-compose up -d
+
+# getting a postgres shell inside postgres container with root user
+docker exec -it postgresdb psql -U root
+
+# run all the scripts inside BankService.sql to initialize db
+```
+
 ## Author
 **Akshit Sadana <akshitsadana@gmail.com>**
 
