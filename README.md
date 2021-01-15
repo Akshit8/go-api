@@ -93,7 +93,7 @@ COMMIT;
 - **test** - run tests in all packages and prints verbose with line coverage
 
 ## References
-[dbSchemaHelper](https://dbdiagram.io) <br>
+[dbSchemaHelper](https://dbdiagram.io)<br>
 [migration-tool](https://github.com/golang-migrate/migrate)<br>
 [crud-code-generator](https://github.com/kyleconroy/sqlc)<br>
 [go-postgres-driver](https://github.com/lib/pq)<br>
