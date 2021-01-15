@@ -99,6 +99,7 @@ serializable
 - **migrationdown** - rollback db to previous stage
 - **sqlc** - generate golang db functions from sql queries
 - **test** - run tests in all packages and prints verbose with line coverage
+- **git** - git add - commit - push commands
 
 ## References
 [dbSchemaHelper](https://dbdiagram.io)<br>
