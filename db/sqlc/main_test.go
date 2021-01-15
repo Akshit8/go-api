@@ -16,9 +16,9 @@ import (
 	_ "github.com/lib/pq"
 )
 
-const (
+var (
 	dbDriver = "postgres"
-	dbSource = "postgres://root:secret@host.docker.internal:5432/simple_bank?sslmode=disable"
+	dbSource = setPostgresHost()
 )
 
 var testQueries *Queries
@@ -30,8 +30,15 @@ func TestMain(m *testing.M) {
 	if err != nil {
 		log.Fatal("cannot connect to db:", err)
 	}
-
 	testQueries = New(testDB)
 
 	os.Exit(m.Run())
+}
+
+func setPostgresHost() string {
+	if os.Getenv("GITHUB_WORKFLOW") == "CI" {
+		return "postgres://root:secret@localhost:5432/simple_bank?sslmode=disable"
+	}
+	return "postgres://root:secret@host.docker.internal:5432/simple_bank?sslmode=disable"
+
 }
