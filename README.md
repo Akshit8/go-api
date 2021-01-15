@@ -83,6 +83,14 @@ UPDATE accounts SET balance = 250 WHERE id = 1;
 COMMIT;
 ```
 
+## Isolation Levels in mysql & postgres
+```
+read-uncommited
+read-commited
+repeatable-read
+serializable
+```
+
 ## Makefile specs
 - **postgres** - setup postgress with compose
 - **createdb** - create a service db inside postgres
