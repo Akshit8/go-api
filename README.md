@@ -56,12 +56,39 @@ go get github.com/stretchr/testify
 go test -v -cover ./...
 ```
 
+## DB transaction lock
+```bash
+docker exec -it postgresdb psql -U root -d simple_bank
+
+# Begin a transaction in postgres
+BEGIN;
+
+# Rollback a transaction
+ROLLBACK;
+
+# Commit a transaction
+COMMIT;
+
+# BEGIN; -> T1
+SELECT * FROM accounts WHERE id = 1 FOR UPDATE;
+
+# BEGIN; -> T2
+SELECT * FROM accounts WHERE id = 1 FOR UPDATE;
+## will block the query untile T1 is commit
+
+# T1 update
+UPDATE accounts SET balance = 250 WHERE id = 1;
+
+# Commit T1 to release the block on T2
+COMMIT;
+```
+
 ## Makefile specs
 - **postgres** - setup postgress with compose
 - **createdb** - create a service db inside postgres
 - **dropdb** - remove servie db
-- **migartionup** - migrate db to new migrations
-- **migartiondown** - rollback db to previous stage
+- **migrationup** - migrate db to new migrations
+- **migrationdown** - rollback db to previous stage
 - **sqlc** - generate golang db functions from sql queries
 - **test** - run tests in all packages and prints verbose with line coverage
 
