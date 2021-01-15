@@ -19,4 +19,9 @@ sqlc:
 test:
 	go test -v -cover ./...
 
-.PHONY: postgres createdb dropdb migrationup migrationdown sqlc test
+git:
+	git add .
+	git commit -m "$(msg)"
+	git push origin master
+
+.PHONY: postgres createdb dropdb migrationup migrationdown sqlc test git
