@@ -43,7 +43,7 @@ sqlc init
 # write CRUD sql queries inside db/query
 ```
 
-## GOlang unit tests for Database CRUD
+## Golang unit tests for Database CRUD
 ```bash
 ## the db/sql is just query client and doesn't features any driver
 ## so for this we need to install postgres driver for go

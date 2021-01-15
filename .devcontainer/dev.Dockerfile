@@ -16,6 +16,7 @@ RUN apt-get update \
         github.com/ramya-rao-a/go-outline \
         github.com/go-delve/delve/cmd/dlv \
         golang.org/x/lint/golint \
+        # auto-update package with popup
         golang.org/x/tools/gopls \
         github.com/fatih/gomodifytags \
         github.com/josharian/impl \
