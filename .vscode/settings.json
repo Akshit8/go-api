@@ -20,7 +20,7 @@
     }
   },
   "gopls": {
-    "ui.completion.usePlaceholders": true,
+    "ui.completion.usePlaceholders": false,
     "ui.diagnostic.staticcheck": true
   },
   "fileheader.Author": "Akshit Sadana (akshitsadana@gmail.com)",
