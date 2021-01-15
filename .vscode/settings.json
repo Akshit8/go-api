@@ -1,6 +1,7 @@
 {
   "go.useLanguageServer": true,
   "go.testOnSave": false,
+  "go.testFlags": ["-v"],
   "go.lintTool": "golint",
   "go.lintOnSave": "workspace",
   // "go.autocompleteUnimportedPackages": true,
