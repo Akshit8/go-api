@@ -100,6 +100,32 @@ cat .sample.env > app.env
 # populate the app.env file
 ```
 
+## Using GoMock to create mock DB for testing HTTP Api
+```bash
+# installing mockgen
+go get github.com/golang/mock/mockgen@v1.4.4
+
+# checking binary status
+which mockgen
+mockgen --version
+
+# mockgen has two modes of operation: source and reflect.
+Source mode generates mock interfaces from a source file.
+It is enabled by using the -source flag
+Example:
+    mockgen -source=foo.go [other options]
+
+Reflect mode generates mock interfaces by building a program
+that uses reflection to understand interfaces. It is enabled
+by passing two non-flag arguments: an import path, and a
+comma-separated list of symbols.
+Example:
+    mockgen database/sql/driver Conn,Driver
+
+# generate some mock code
+mockgen -destination db/mock/store.go github.com/Akshit8/go-api/db/sqlc Store
+```
+
 ## Makefile specs
 - **postgres** - setup postgress with compose
 - **createdb** - create a service db inside postgres
