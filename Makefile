@@ -24,4 +24,7 @@ git:
 	git commit -m "$(msg)"
 	git push origin master
 
-.PHONY: postgres createdb dropdb migrationup migrationdown sqlc test git
+server:
+	go run main.go
+
+.PHONY: postgres createdb dropdb migrationup migrationdown sqlc test git server

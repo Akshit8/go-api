@@ -13,12 +13,13 @@ import (
 	"os"
 	"testing"
 
+	"github.com/Akshit8/go-api/util"
 	_ "github.com/lib/pq"
 )
 
 var (
 	dbDriver = "postgres"
-	dbSource = setPostgresHost()
+	dbSource = util.SetPostgresHost()
 )
 
 var testQueries *Queries
@@ -33,12 +34,4 @@ func TestMain(m *testing.M) {
 	testQueries = New(testDB)
 
 	os.Exit(m.Run())
-}
-
-func setPostgresHost() string {
-	if os.Getenv("GITHUB_WORKFLOW") == "CI" {
-		return "postgres://root:secret@localhost:5432/simple_bank?sslmode=disable"
-	}
-	return "postgres://root:secret@host.docker.internal:5432/simple_bank?sslmode=disable"
-
 }

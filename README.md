@@ -100,6 +100,7 @@ serializable
 - **sqlc** - generate golang db functions from sql queries
 - **test** - run tests in all packages and prints verbose with line coverage
 - **git** - git add - commit - push commands
+- **server** - start REST server
 
 ## References
 [dbSchemaHelper](https://dbdiagram.io)<br>
@@ -111,6 +112,8 @@ serializable
 [postgres-lock](https://wiki.postgresql.org/wiki/Lock_Monitoring)<br>
 [handling-deadlock-go](https://www.youtube.com/watch?v=G2aggv_3Bbg&list=PLy_6D98if3ULEtXtNSY_2qN21VCKgoQAE&index=7)<br>
 [github-action-postgres](https://docs.github.com/en/free-pro-team@latest/actions/guides/creating-postgresql-service-containers)<br>
+[gin](https://github.com/gin-gonic/gin)<br>
+[go-validator](https://godoc.org/github.com/go-playground/validator#hdr-Baked_In_Validators_and_Tags)<br>
 
 ## Author
 **Akshit Sadana <akshitsadana@gmail.com>**
