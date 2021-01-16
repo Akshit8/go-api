@@ -1,6 +1,6 @@
 /*
  * @File: db.sqlc.main_test.go
- * @Description: entrypoint to init all tests
+ * @Description: entrypoint to all db tests
  * @LastModifiedTime: 2021-01-14 16:47:30
  * @Author: Akshit Sadana (akshitsadana@gmail.com)
  */
