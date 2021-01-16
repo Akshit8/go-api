@@ -91,6 +91,15 @@ repeatable-read
 serializable
 ```
 
+## Loading config and env vars with go viper
+Find, load, and unmarshal a configuration file in JSON, TOML, YAML, HCL, INI, envfile or Java properties formats.
+```bash
+# setup config file locally
+cat .sample.env > app.env
+
+# populate the app.env file
+```
+
 ## Makefile specs
 - **postgres** - setup postgress with compose
 - **createdb** - create a service db inside postgres
@@ -114,6 +123,7 @@ serializable
 [github-action-postgres](https://docs.github.com/en/free-pro-team@latest/actions/guides/creating-postgresql-service-containers)<br>
 [gin](https://github.com/gin-gonic/gin)<br>
 [go-validator](https://godoc.org/github.com/go-playground/validator#hdr-Baked_In_Validators_and_Tags)<br>
+[go-viper](https://github.com/spf13/viper)<br>
 
 ## Author
 **Akshit Sadana <akshitsadana@gmail.com>**

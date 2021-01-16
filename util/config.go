@@ -8,13 +8,42 @@
 // Package util impls service utilities
 package util
 
-import "os"
+import (
+	"github.com/spf13/viper"
+)
 
-// SetPostgresHost sets host addr for postgresdb
-func SetPostgresHost() string {
-	if os.Getenv("GITHUB_WORKFLOW") == "CI" {
-		return "postgres://root:secret@localhost:5432/simple_bank?sslmode=disable"
-	}
-	return "postgres://root:secret@host.docker.internal:5432/simple_bank?sslmode=disable"
-
+// Config stores all configuration of the application.
+// The values are ready by viper from a config file or environment variable
+type Config struct {
+	DBDriver      string `mapstructure:"DB_DRIVER"`
+	DBSource      string `mapstructure:"DB_SOURCE"`
+	ServerAddress string `mapstructure:"SERVER_ADDRESS"`
 }
+
+// LoadConfig reads configuratoion from file or environment variables.
+func LoadConfig(path string) (config Config, err error) {
+	viper.AddConfigPath(path)
+	viper.SetConfigName("app")
+	viper.SetConfigType("env")
+
+	viper.AutomaticEnv()
+
+	err = viper.ReadInConfig()
+	if err != nil {
+		// remember
+		return
+	}
+
+	err = viper.Unmarshal(&config)
+
+	return config, err
+}
+
+// setPostgresHost sets host addr for postgresdb
+// func setPostgresHost(config *Config) string {
+// 	if os.Getenv("GITHUB_WORKFLOW") == "CI" {
+// 		return config.DBSourceTesting
+// 	}
+// 	return config.DBSourceTesting
+
+// }
