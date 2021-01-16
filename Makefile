@@ -27,4 +27,7 @@ git:
 server:
 	go run main.go
 
-.PHONY: postgres createdb dropdb migrationup migrationdown sqlc test git server
+mock:
+	mockgen -destination db/mock/store.go -package mockdb github.com/Akshit8/go-api/db/sqlc Store
+
+.PHONY: postgres createdb dropdb migrationup migrationdown sqlc test git server mock

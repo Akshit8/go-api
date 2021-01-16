@@ -123,7 +123,7 @@ Example:
     mockgen database/sql/driver Conn,Driver
 
 # generate some mock code
-mockgen -destination db/mock/store.go github.com/Akshit8/go-api/db/sqlc Store
+mockgen -destination db/mock/store.go -package mockdb github.com/Akshit8/go-api/db/sqlc Store
 ```
 
 ## Makefile specs
@@ -136,6 +136,7 @@ mockgen -destination db/mock/store.go github.com/Akshit8/go-api/db/sqlc Store
 - **test** - run tests in all packages and prints verbose with line coverage
 - **git** - git add - commit - push commands
 - **server** - start REST server
+- **mock** - generated mockdb stub for api testing
 
 ## References
 [dbSchemaHelper](https://dbdiagram.io)<br>
