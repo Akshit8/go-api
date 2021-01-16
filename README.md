@@ -1,7 +1,11 @@
 # go-api
 
 ## DB Architecture
-<img src=".github/assets/BankServiceSchema.png">
+### v1
+<img src=".github/assets/BankServiceSchemaV1.png">
+
+### v2
+<img src=".github/assets/BankServiceSchemaV2.png">
 
 ## Setting PostgresDB for development with docker
 ```bash
@@ -126,12 +130,27 @@ Example:
 mockgen -destination db/mock/store.go -package mockdb github.com/Akshit8/go-api/db/sqlc Store
 ```
 
+## Migrating DB to v2
+```bash
+migrate create -ext sql -dir db/migration -seq add_users
+
+make migrationup # would throw error due to foreign key constrant
+
+docker exec -it postgresdb psql -U root -d simple_bank
+SELECT * FROM schema_migrations;
+UPDATE schema_migrations SET dirty=false where version=2;
+
+make migrationdown
+```
+
 ## Makefile specs
 - **postgres** - setup postgress with compose
 - **createdb** - create a service db inside postgres
 - **dropdb** - remove servie db
 - **migrationup** - migrate db to new migrations
 - **migrationdown** - rollback db to previous stage
+- **migrationup1** - migrates to 1 up
+- **migrationdown1** - rollbacks to 1 down
 - **sqlc** - generate golang db functions from sql queries
 - **test** - run tests in all packages and prints verbose with line coverage
 - **git** - git add - commit - push commands
