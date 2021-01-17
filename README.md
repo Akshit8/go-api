@@ -143,6 +143,11 @@ UPDATE schema_migrations SET dirty=false where version=2;
 make migrationdown
 ```
 
+## Switiching app stage automatically
+```bash
+export APP_ENV=dev && go run main.go
+```
+
 ## Makefile specs
 - **postgres** - setup postgress with compose
 - **createdb** - create a service db inside postgres

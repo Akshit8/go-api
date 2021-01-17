@@ -9,6 +9,8 @@
 package util
 
 import (
+	"os"
+
 	"github.com/spf13/viper"
 )
 
@@ -22,17 +24,19 @@ type Config struct {
 
 // LoadConfig reads configuratoion from file or environment variables.
 func LoadConfig(path string) (config Config, err error) {
-	viper.AddConfigPath(path)
-	viper.SetConfigName("app")
-	viper.SetConfigType("env")
+	appEnv := os.Getenv("APP_ENV")
+	if appEnv == "dev" {
+		viper.AddConfigPath(path)
+		viper.SetConfigName("app")
+		viper.SetConfigType("env")
 
-	viper.AutomaticEnv()
-
-	err = viper.ReadInConfig()
-	if err != nil {
-		// remember
-		return
+		err = viper.ReadInConfig()
+		if err != nil {
+			// remember
+			return
+		}
 	}
+	viper.AutomaticEnv()
 
 	err = viper.Unmarshal(&config)
 

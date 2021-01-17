@@ -31,7 +31,7 @@ git:
 	git push origin master
 
 server:
-	go run main.go
+	export APP_ENV=dev && go run main.go
 
 mock:
 	mockgen -destination db/mock/store.go -package mockdb github.com/Akshit8/go-api/db/sqlc Store
