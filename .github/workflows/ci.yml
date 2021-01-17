@@ -40,5 +40,8 @@ jobs:
     - name: Run migrations
       run: make migrationup
 
+      # app.env file touched for preventing LoadConfig error
     - name: Test
-      run: make test
+      run: |
+        touch app.env 
+        make test
