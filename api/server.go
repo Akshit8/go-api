@@ -9,7 +9,11 @@
 package api
 
 import (
+	"fmt"
+
 	db "github.com/Akshit8/go-api/db/sqlc"
+	"github.com/Akshit8/go-api/token"
+	"github.com/Akshit8/go-api/util"
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
 	"github.com/go-playground/validator/v10"
@@ -17,14 +21,22 @@ import (
 
 // Server serves HTTP requests for our banking services.
 type Server struct {
+	config util.Config
 	store  db.Store
+	token  token.Maker
 	router *gin.Engine
 }
 
 // NewServer creates a new HTTP server and setup routing.
-func NewServer(store db.Store) *Server{
+func NewServer(config util.Config, store db.Store) (*Server, error) {
+	tokenMaker, err := token.NewPasetoMaker(config.TokenSymmetricKey)
+	if err != nil {
+		return nil, fmt.Errorf("cannnot create token maker: %w", err)
+	}
 	server := &Server{
-		store: store,
+		config: config,
+		store:  store,
+		token:  tokenMaker,
 		router: gin.Default(),
 	}
 
@@ -40,11 +52,11 @@ func NewServer(store db.Store) *Server{
 
 	server.router.POST("/users", server.createUser)
 
-	return server
+	return server, nil
 }
 
 // Start runs the HTTP server on specific address.
-func (server *Server) Start(address  string) error {
+func (server *Server) Start(address string) error {
 	return server.router.Run(address)
 }
 
