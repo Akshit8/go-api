@@ -44,6 +44,11 @@ func NewServer(config util.Config, store db.Store) (*Server, error) {
 		v.RegisterValidation("currency", validCurrency)
 	}
 
+	server.setupRouter()
+	return server, nil
+}
+
+func (server *Server) setupRouter() {
 	server.router.POST("/accounts", server.createAccount)
 	server.router.GET("/accounts/:id", server.getAccount)
 	server.router.GET("/accounts", server.listAccount)
@@ -51,8 +56,7 @@ func NewServer(config util.Config, store db.Store) (*Server, error) {
 	server.router.POST("/transfers", server.createTransfer)
 
 	server.router.POST("/users", server.createUser)
-
-	return server, nil
+	server.router.POST("/users/login", server.loginUser)
 }
 
 // Start runs the HTTP server on specific address.
