@@ -36,4 +36,7 @@ server:
 mock:
 	mockgen -destination db/mock/store.go -package mockdb github.com/Akshit8/go-api/db/sqlc Store
 
+docker-build:
+	docker build -t akshit8/simple_bank:latest -f ./dockerfiles/Dockerfile .
+
 .PHONY: postgres createdb dropdb migrationup migrationdown migrationup1 migrationdown1 sqlc test git server mock
