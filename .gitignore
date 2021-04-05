@@ -15,5 +15,3 @@
 # vendor/
 
 app.env
-.devcontainer
-.vscode
