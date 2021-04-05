@@ -43,12 +43,3 @@ func LoadConfig(path string) (config Config, err error) {
 
 	return config, err
 }
-
-// setPostgresHost sets host addr for postgresdb
-// func setPostgresHost(config *Config) string {
-// 	if os.Getenv("GITHUB_WORKFLOW") == "CI" {
-// 		return config.DBSourceTesting
-// 	}
-// 	return config.DBSourceTesting
-
-// }
